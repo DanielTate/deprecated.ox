@@ -1,3 +1,5 @@
+const fs = require('fs')
+const Path = require('path')
 const chokidar = require('chokidar')
 
 const ox = {
@@ -66,16 +68,16 @@ const ox = {
         return this
     },
     _watch(watched, fn, options) {
-        let path = '.'
-        let events = ['change']
 
-        if(watched.path) {
-            path = watched.path
-        }
+        let events = ['change']
 
         if(watched.events) {
             events = watched.events
         }
+
+        let path = Path.join(process.cwd(), options.watch).split('/')
+        path.pop()
+        path = path.join('/')
 
         const watcher = chokidar.watch(path)
 
