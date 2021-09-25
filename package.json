@@ -1,6 +1,6 @@
 {
-  engines: {
-    "node": "^15.8.0"
+  "engines": {
+    "node": "15.8.0"
   },
   "dependencies": {
     "chokidar": "^3.5.2"
