@@ -1,6 +1,7 @@
 const fs = require('fs')
 const Path = require('path')
 const chokidar = require('chokidar')
+const { performance } = require('perf_hooks')
 
 const ox = {
     _add(fn) {
@@ -79,14 +80,17 @@ const ox = {
         path.pop()
         path = path.join('/')
 
-        const watcher = chokidar.watch(path)
+        if(path) {
+            const watcher = chokidar.watch(path)
 
-        events.forEach(event => {
-            watcher.on(event, end => {
-                this._log(`${end} was ${event}ed.`)
-                fn(options)
+            events.forEach(event => {
+                watcher.on(event, end => {
+                    this._log(`${end} was ${event}d.`)
+                    fn(options)
+                })
             })
-        })
+        }
+
 
         return this
     }
