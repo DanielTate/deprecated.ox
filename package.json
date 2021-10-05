@@ -7,7 +7,7 @@
   },
   "name": "@oxidental/ox",
   "description": "> This is alpha software and it's api will likely change a lot before version one. Use at your own risk.",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "main": "index.js",
   "devDependencies": {},
   "scripts": {

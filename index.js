@@ -76,9 +76,11 @@ const ox = {
             events = watched.events
         }
 
-        let path = Path.join(process.cwd(), options.watch).split('/')
+        const delimiter = (process.platform === "win32") ? "\\" : "/"
+        let path = Path.join(process.cwd(), options.watch)
+        path = path.split(delimiter)
         path.pop()
-        path = path.join('/')
+        path = path.join(delimiter)
 
         if(path) {
             const watcher = chokidar.watch(path)
