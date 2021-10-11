@@ -1,9 +1,25 @@
 const fs = require('fs')
-const Path = require('path')
+const path = require('path')
 const chokidar = require('chokidar')
+const short = require('short-uuid')
 const { performance } = require('perf_hooks')
 
 const ox = {
+	_manifest(key) {
+		const base = path.resolve(__dirname, '..')
+		const filePath = `${base}/manifest.json`
+		const absolute = `/${key}`
+		let record = {}
+
+		if(fs.existsSync(filePath)){
+			const file = fs.readFileSync(filePath)
+			record = JSON.parse(file)
+			record[absolute] = `${absolute}?id=${short.generate()}`
+		}
+		record[absolute] = `${absolute}?id=${short.generate()}`
+
+		fs.writeFileSync(filePath, JSON.stringify(record, null, 4))
+	},
     _add(fn) {
         const blueprint = (options = {}) => {
 
@@ -77,13 +93,13 @@ const ox = {
         }
 
         const delimiter = (process.platform === "win32") ? "\\" : "/"
-        let path = Path.join(process.cwd(), options.watch)
-        path = path.split(delimiter)
-        path.pop()
-        path = path.join(delimiter)
+        let p = path.join(process.cwd(), options.watch)
+        p = p.split(delimiter)
+        p.pop()
+        p = p.join(delimiter)
 
-        if(path) {
-            const watcher = chokidar.watch(path)
+        if(p) {
+            const watcher = chokidar.watch(p)
 
             events.forEach(event => {
                 watcher.on(event, end => {

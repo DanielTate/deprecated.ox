@@ -3,12 +3,14 @@
     "node": "15.8.0"
   },
   "dependencies": {
-    "chokidar": "^3.5.2"
+    "chokidar": "^3.5.2",
+    "short-uuid": "^4.2.0"
   },
   "name": "@oxidental/ox",
   "description": "> This is alpha software and it's api will likely change a lot before version one. Use at your own risk.",
-  "version": "0.0.9",
-  "main": "index.js",
+  "version": "0.0.10",
+  "main": "index",
+  "typings": "index",
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
