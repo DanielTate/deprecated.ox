@@ -6,7 +6,7 @@ const { performance } = require('perf_hooks')
 
 const ox = {
 	_manifest(key) {
-		const base = path.resolve(__dirname, '..')
+		const base = path.resolve(process.cwd())
 		const filePath = `${base}/manifest.json`
 		const absolute = `/${key}`
 		let record = {}
@@ -34,7 +34,7 @@ const ox = {
             for(const [key, value] of Object.entries(defaults)) {
                 if(options[key] === undefined) {
                     options[key] = value
-                } 
+                }
             }
 
             // Destructor for convenience
@@ -56,7 +56,7 @@ const ox = {
                 }
             })
 
-            // Call the task and pass the decorated options 
+            // Call the task and pass the decorated options
             fn(options)
 
             // Calculate time taken to complete task
@@ -71,7 +71,7 @@ const ox = {
 
         // If the function name exists we assign it to the ox object so it can be called
         if(fn.name) {
-            this[fn.name] = blueprint 
+            this[fn.name] = blueprint
         } else {
             // If not we just run it.
             this._log(`Function name doesn't exist, running it immediately.`)

@@ -1,6 +1,6 @@
 {
   "engines": {
-    "node": "15.8.0"
+    "node": "16.0.0"
   },
   "dependencies": {
     "chokidar": "^3.5.2",
@@ -8,7 +8,7 @@
   },
   "name": "@oxidental/ox",
   "description": "> This is alpha software and it's api will likely change a lot before version one. Use at your own risk.",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "main": "index",
   "typings": "index",
   "devDependencies": {},
